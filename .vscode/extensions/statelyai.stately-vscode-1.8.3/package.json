@@ -1,0 +1,117 @@
+{
+	"name": "stately-vscode",
+	"displayName": "XState VSCode",
+	"description": "Visual editing, autocomplete and typegen for XState",
+	"license": "MIT",
+	"author": "Stately Team",
+	"version": "1.8.3",
+	"private": true,
+	"engines": {
+		"vscode": "^1.52.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/statelyai/xstate-tools"
+	},
+	"bugs": {
+		"url": "https://github.com/statelyai/xstate-tools/issues"
+	},
+	"galleryBanner": {
+		"color": "#fff"
+	},
+	"icon": "media/icon.png",
+	"categories": [
+		"Linters",
+		"Visualization",
+		"Other"
+	],
+	"keywords": [
+		"xstate",
+		"vscode",
+		"visualize",
+		"autocomplete",
+		"typescript",
+		"javascript"
+	],
+	"activationEvents": [
+		"onLanguage:typescript",
+		"onLanguage:typescriptreact",
+		"onLanguage:javascript",
+		"onLanguage:javascriptreact"
+	],
+	"main": "./dist/index.js",
+	"publisher": "statelyai",
+	"contributes": {
+		"commands": [
+			{
+				"command": "stately-xstate.visualize",
+				"title": "Open Inspector",
+				"category": "XState"
+			},
+			{
+				"command": "stately-xstate.edit",
+				"title": "Open Visual Editor",
+				"category": "XState"
+			},
+			{
+				"command": "stately-xstate.sign-out",
+				"title": "Sign out of Stately",
+				"category": "XState"
+			},
+			{
+				"command": "stately-xstate.sign-in",
+				"title": "Sign in to Stately",
+				"category": "XState"
+			}
+		],
+		"configuration": {
+			"title": "XState",
+			"properties": {
+				"xstate.showVisualEditorWarnings": {
+					"type": "boolean",
+					"default": true,
+					"description": "Show warnings that prevent you from using the visual editor."
+				},
+				"xstate.targetEditorBaseUrl": {
+					"type": "string",
+					"default": "https://stately.ai",
+					"description": "The base URL to open the visual editor in."
+				},
+				"xstate.nestTypegenFiles": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable nesting the generated typegen files."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"lint": "tsc",
+		"test": "jest --passWithNoTests",
+		"viz:build": "esbuild src/vizWebviewScript.ts --bundle --outfile=scripts/vizWebview.js",
+		"editor:build": "esbuild src/editorWebviewScript.ts --bundle --outfile=scripts/editorWebview.js",
+		"build": "esbuild --bundle --platform=\"node\" src/extension.ts --outfile=dist/index.js --external:vscode --format=cjs --sourcemap"
+	},
+	"dependencies": {
+		"@types/lz-string": "^1.3.34",
+		"@xstate/inspect": "^0.4.1",
+		"@xstate/tools-shared": "1.1.7",
+		"lz-string": "^1.4.4",
+		"vscode-languageclient": "^7.0.0",
+		"xstate": "^4.29.0"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.52.0",
+		"vscode-test": "^1.3.0"
+	},
+	"__metadata": {
+		"id": "b34fd7d3-c0bc-493c-b90e-3246904ea27b",
+		"publisherId": "82371403-9ce3-4fe1-a7d0-fd4e26f5f8cf",
+		"publisherDisplayName": "Stately",
+		"targetPlatform": "undefined",
+		"updated": true,
+		"isPreReleaseVersion": false,
+		"preRelease": false,
+		"installedTimestamp": 1655312824371
+	}
+}
